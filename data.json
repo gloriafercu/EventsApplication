@@ -1,0 +1,31 @@
+{
+  "data": [
+    {
+      "name": "Campanadas de Fin de año 2018",
+      "date": "2018-12-31",
+      "time": "01:00",
+      "location": "Puerta del Sol, Madrid",
+      "owner": "Gloria ",
+      "category": "Ocio",
+      "id": 1
+    },
+    {
+      "name": "Cocina con Karlos Arguiñano",
+      "date": "2019-01-17",
+      "time": "11:30",
+      "location": "Bilbao",
+      "owner": "Javi",
+      "category": "Trabajo",
+      "id": 2
+    },
+    {
+      "name": "Ir de cena con los amigos de toda la vida",
+      "date": "2018-12-29",
+      "time": "15:30",
+      "location": "Cordoba",
+      "owner": "Juanjo",
+      "category": "Ocio",
+      "id": 3
+    }
+  ]
+}
