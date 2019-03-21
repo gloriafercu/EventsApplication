@@ -31,7 +31,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <template>
     <style>
       :host {
-        --app-primary-color: #4285f4;
+        --app-primary-color: #ffae00;
         --app-secondary-color: black;
 
         display: block;
@@ -43,6 +43,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       app-header {
         color: #fff;
+        font-weight: bold;
         background-color: var(--app-primary-color);
       }
 
@@ -63,21 +64,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
       .drawer-list a.iron-selected {
-        color: black;
+        color: #ff6600;
         font-weight: bold;
       }
+
     </style>
 
     <app-location
-        route="{{route}}"
-        url-space-regex="^[[rootPath]]">
+      route="{{route}}"
+      url-space-regex="^[[rootPath]]">
     </app-location>
 
     <app-route
-        route="{{route}}"
-        pattern="[[rootPath]]:page"
-        data="{{routeData}}"
-        tail="{{subroute}}">
+      route="{{route}}"
+      pattern="[[rootPath]]:page"
+      data="{{routeData}}"
+      tail="{{subroute}}">
     </app-route>
 
     <app-drawer-layout fullbleed narrow="{{narrow}}">
@@ -97,15 +99,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <app-header slot="header" condenses reveals effects="waterfall">
           <app-toolbar>
             <paper-icon-button icon="my-icons:menu" drawer-toggle></paper-icon-button>
-            <div main-title>Show me the events !!</div>
+            <div main-title>EventsApplication</div>
           </app-toolbar>
         </app-header>
 
         <iron-pages
-            selected="[[page]]"
-            attr-for-selected="name"
-            fallback-selection="view404"
-            role="main">
+          selected="[[page]]"
+          attr-for-selected="name"
+          fallback-selection="view404"
+          role="main">
           <my-events name="events"></my-events>
           <my-event-form name="event-form"></my-event-form>
           <my-edit-event name="edit-event"></my-edit-event>
@@ -114,15 +116,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </app-header-layout>
     </app-drawer-layout>
 
-    <iron-ajax
-        auto
-        url="https://www.googleapis.com/youtube/v3/search"
-        params='{"part":"snippet", "q":"polymer", "key": "YOUTUBE_API_KEY", "type": "video"}'
-        handle-as="json"
-        on-response="handleResponse"
-        debounce-duration="300">
-    </iron-ajax>
-    
   </template>
 
   <script>
@@ -131,7 +124,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     Polymer.setPassiveTouchGestures(true);
 
     class MyApp extends Polymer.Element {
-      static get is() { return 'my-app'; }
+      static get is() { 
+        return 'my-app'; 
+      }
 
       static get properties() {
         return {
@@ -169,15 +164,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         // Load page import on demand. Show 404 page if fails
         const resolvedPageUrl = this.resolveUrl('views/my-' + page + '.html');
         Polymer.importHref(
-            resolvedPageUrl,
-            null,
-            this._showPage404.bind(this),
-            true);
+          resolvedPageUrl,
+          null,
+          this._showPage404.bind(this),
+          true);
       }
 
       _showPage404() {
         this.page = 'view404';
       }
+
+      
     }
 
     window.customElements.define(MyApp.is, MyApp);
