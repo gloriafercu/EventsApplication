@@ -1,0 +1,141 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
+<link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
+
+
+<dom-module id="event-card">
+  <template>
+    <style include="shared-styles">
+      :host {
+        display: block
+      }
+      
+      h4 {
+        color: #ff6600;
+      }
+
+      .event-card {
+        margin: 24px;
+        padding: 16px;
+        color: #757575;
+        border-radius: 5px;
+        background-color: #fff;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+      }
+      
+
+    </style>
+
+    <paper-card class="event-card-content">
+      <div class="card-content">
+        <div class="event-name">[[eventItem.name]]</div>
+        <div class="event-time-hour-content">
+          <div class="event-time">
+            <iron-icon icon="schedule"></iron-icon>
+            <span>[[eventItem.time]]</span>
+          </div>
+          <div class="event-date">
+            <iron-icon icon="date-range"></iron-icon>
+            <span>[[eventItem.date]]</span>
+          </div>
+        </div>
+        <div class="event-location">
+          <iron-icon icon="room"></iron-icon>
+          <span>[[eventItem.location]]</span>
+        </div>
+      </div>
+      <paper-icon-button icon="expand-more" title="more info" on-click="toggle" style="float:right;"></paper-icon-button>
+        <iron-collapse id="more-info" style="width:100%;" opened="[[state]]">
+          <div class="event-description">[[eventItem.description]]</div>
+          <a href$="/edit-event/[[eventItem.id]]">
+            <paper-icon-button icon="create" title="Editar" style="float:right;">Editar</paper-icon-button> 
+          </a>
+        </iron-collapse> 
+    </paper-card>
+
+    <!-- <paper-card heading="Top western road trips" image="./trip.png" alt="Sailboat Harbor" class="white">
+      <div class="card-content">1,000 miles of wonder</div>
+      <div class="card-actions">
+        <paper-button>Share</paper-button>
+        <paper-button>Explore</paper-button>
+        <paper-icon-button icon="expand-more" title="more info" onclick="_toggle()" style="float:right;">
+        </paper-icon-button>
+        <iron-collapse id="more-info" style="width:100%;">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent enim ante, tempus eget volutpat ac, cursus ac ante. Nulla facilisi. Praesent sed lacinia ligula. Donec malesuada nisl eget quam iaculis, vel placerat justo cursus.
+        </iron-collapse>
+        <script>
+          function _toggle() {
+            var moreInfo = document.getElementById('more-info');
+            var iconButton = Polymer.dom(event).localTarget;
+            iconButton.icon = moreInfo.opened ? 'expand-more': 'expand-less';
+            moreInfo.toggle();
+          }
+        </script>
+      </div>
+    </paper-card> -->
+
+
+ <!--    <div class="event-card" on-click="toggle">
+
+      <h4>[[eventItem.name]]</h4>
+      <iron-collapse opened="[[state]]" >
+        <div class="collapse-content">
+          <p><span>Fecha: </span><span>[[eventItem.date]]</span></p>
+          <p><span>Hora: </span><span>[[eventItem.time]]</span></p>
+          <p><span>Ubicación: </span><span>[[eventItem.location]]</span></p>
+          <p><span>Organizador: </span><span>[[eventItem.owner]]</span></p>
+          <p>[[eventItem.category]]</p>
+          <div class="button__container">
+            <a href$="/edit-event/[[eventItem.id]]">
+              <paper-button class="button button--save">Editar</paper-button>
+            </a>
+          </div>
+        </div>
+      </iron-collapse>
+
+    </div>   -->
+  
+  </template>
+
+  <script>
+    /**
+     * `event-item` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class EventCard extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'event-card';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+
+      static get properties() {
+        return {
+          eventItem: Object,
+          state: {
+            type: Boolean,
+            value: false
+          } 
+        };
+      }
+    
+      toggle() {
+        this.state = !this.state;
+      }
+
+    }
+
+    window.customElements.define(EventCard.is, EventCard);
+  </script>
+</dom-module>

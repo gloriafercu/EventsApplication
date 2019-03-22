@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../../bower_components/polymer/lib/elements/dom-repeat.html">
 <link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 <link rel="import" href="../../bower_components/paper-spinner/paper-spinner.html">
-<link rel="import" href="../components/event-item.html">
+<link rel="import" href="../components/event-card.html">
 <link rel="import" href="../styles/shared-styles.html">
 
 <dom-module id="my-events">
@@ -33,7 +33,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     <iron-ajax
       url="http://localhost:3000/data"
-      last-response="{{events}}"
+      last-response="{{eventsList}}"
       loading="{{loading}}"
       auto>
     </iron-ajax>
@@ -42,15 +42,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div class="circle">1</div>
       <h1>Mis eventos</h1>
 
-      <template is="dom-repeat" items="[[events]]">
-        <event-item
-          name="[[item.name]]"
-          date="[[item.date]]"
-          time="[[item.time]]"
-          location="[[item.location]]"
-          owner="[[item.owner]]"
-          category="[[item.category]]">
-        </event-item>
+      <template is="dom-repeat" items="[[eventsList]]" as="eventItem">
+        <event-card event-item="[[eventItem]]"></event-card>
       </template>
 
     </div>
@@ -67,18 +60,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         */
       static get properties() {
         return {
-          events: {
-            type: Array,
-            value: function() {
-              return [];
-            }
-          },
+          eventsList: Array,
           loading: Boolean
         };
       }
-
-     
-
     }
 
     window.customElements.define(MyEvents.is, MyEvents);

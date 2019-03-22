@@ -7,6 +7,7 @@
       "location": "Puerta del Sol, Madrid",
       "owner": "Gloria ",
       "category": "Ocio",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent enim ante, tempus eget volutpat ac, cursus ac ante. Nulla facilisi. Praesent sed lacinia ligula. Donec malesuada nisl eget quam iaculis, vel placerat justo cursus.",
       "id": 1
     },
     {
@@ -16,6 +17,7 @@
       "location": "Bilbao",
       "owner": "Javi",
       "category": "Trabajo",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent enim ante, tempus eget volutpat ac, cursus ac ante. Nulla facilisi. Praesent sed lacinia ligula. Donec malesuada nisl eget quam iaculis, vel placerat justo cursus.",
       "id": 2
     },
     {
@@ -25,6 +27,7 @@
       "location": "Cordoba",
       "owner": "Juanjo",
       "category": "Ocio",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent enim ante, tempus eget volutpat ac, cursus ac ante. Nulla facilisi. Praesent sed lacinia ligula. Donec malesuada nisl eget quam iaculis, vel placerat justo cursus.",
       "id": 3
     }
   ]
