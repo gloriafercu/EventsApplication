@@ -8,23 +8,77 @@
   <template>
     <style include="shared-styles">
       :host {
-        display: block
+        display: block;
       }
       
-      h4 {
+      /* h4 {
         color: #ff6600;
       }
 
-      .event-card {
-        margin: 24px;
-        padding: 16px;
-        color: #757575;
+      paper-card {
+        width: 100%;
+      } */
+
+      paper-icon-button.expand-more{
+        display: flex;
+        align-items: center;
+        justify-content: flex-end; 
+        width: 100%; 
+        color: var(--paper-brown-400);
+        border-top: 1px solid rgb(209, 209, 209);
+      }
+
+      paper-icon-button.button-edit {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        width: 100%;
+        color: var(--paper-brown-400);
+      }
+
+      .event-card-content  {
+        margin: 15px 24px;
+        color: var(--paper-brown-300);
         border-radius: 5px;
         background-color: #fff;
         box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
         cursor: pointer;
       }
-      
+
+      .card-content {
+        padding: 20px 30px;
+      }
+
+      .event-name {
+        font-size: 22px;
+        font-weight: bold;
+        color: #ff6600;
+        margin-bottom: 15px;
+      }
+
+      .event-time-hour-content {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 25px;
+        margin-bottom: 12px;
+      }
+
+      .event-location {
+        padding: 0 25px;
+        color: var(--paper-brown-200);
+        font-size: 14px;
+      }
+
+      iron-collapse.collapse-description {
+        padding: 5px 30px 10px;
+      width: 90%;
+      }
+
+      /* iron-icon {
+        margin-right: 5px;
+        color: var(--paper-brown-400);
+      } */
 
     </style>
 
@@ -34,7 +88,7 @@
         <div class="event-time-hour-content">
           <div class="event-time">
             <iron-icon icon="schedule"></iron-icon>
-            <span>[[eventItem.time]]</span>
+            <span>[[eventItem.time]] h</span>
           </div>
           <div class="event-date">
             <iron-icon icon="date-range"></iron-icon>
@@ -46,13 +100,13 @@
           <span>[[eventItem.location]]</span>
         </div>
       </div>
-      <paper-icon-button icon="expand-more" title="more info" on-click="toggle" style="float:right;"></paper-icon-button>
-        <iron-collapse id="more-info" style="width:100%;" opened="[[state]]">
-          <div class="event-description">[[eventItem.description]]</div>
-          <a href$="/edit-event/[[eventItem.id]]">
-            <paper-icon-button icon="create" title="Editar" style="float:right;">Editar</paper-icon-button> 
-          </a>
-        </iron-collapse> 
+      <paper-icon-button noink icon="expand-more" title="Más info" on-click="toggle" class="expand-more"></paper-icon-button>
+      <iron-collapse id="more-info" opened="[[state]]" class="collapse-description">
+        <div class="event-description">[[eventItem.description]]</div>
+        <a href$="/edit-event/[[eventItem.id]]">
+          <paper-icon-button icon="create" title="Editar" class="button-edit">Editar</paper-icon-button> 
+        </a>
+      </iron-collapse> 
     </paper-card>
 
     <!-- <paper-card heading="Top western road trips" image="./trip.png" alt="Sailboat Harbor" class="white">
@@ -125,14 +179,32 @@
           eventItem: Object,
           state: {
             type: Boolean,
-            value: false
-          } 
+            value: false,
+            observer: 'toggleObserver'
+          },
+          valueIcon: String
+
         };
       }
     
       toggle() {
         this.state = !this.state;
+       /*  var moreInfo = document.getElementById('more-info');
+        var iconButton = Polymer.dom(event).localTarget;
+        iconButton.icon = moreInfo.opened ? 'expand-more': 'expand-less';
+        moreInfo.toggle(); */
       }
+      
+
+      /* toggleObserver(valueIcon) {
+
+        if (this.state==false) {
+          valueIcon ='expand-more'
+        } else {
+          valueIcon = 'expand-less'
+        }
+      } */
+       
 
     }
 
