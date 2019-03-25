@@ -20,14 +20,17 @@
       } */
 
       paper-icon-button.expand-more{
-        display: flex;
-        align-items: center;
-        justify-content: flex-end; 
-        width: 100%; 
+        width: 40px;
+        margin-right:10px; 
         color: var(--paper-brown-400);
-        border-top: 1px solid rgb(209, 209, 209);
       }
 
+      .separator {
+        width: 100%;
+        border-top: 1px solid rgb(209, 209, 209);
+        display: flex;
+        justify-content: flex-end;
+      }
       paper-icon-button.button-edit {
         display: flex;
         align-items: center;
@@ -72,7 +75,6 @@
 
       iron-collapse.collapse-description {
         padding: 5px 30px 10px;
-      width: 90%;
       }
 
       /* iron-icon {
@@ -100,8 +102,11 @@
           <span>[[eventItem.location]]</span>
         </div>
       </div>
-      <paper-icon-button noink icon="expand-more" title="Más info" on-click="toggle" class="expand-more"></paper-icon-button>
-      <iron-collapse id="more-info" opened="[[state]]" class="collapse-description">
+      <div class="separator">
+        <paper-icon-button noink="true" icon="{{_getIcon(state)}}" title="Más info" on-click="toggle" class="expand-more"></paper-icon-button>
+      </div>
+     
+      <iron-collapse id="more-info" opened="[[state]]"   class="collapse-description">
         <div class="event-description">[[eventItem.description]]</div>
         <a href$="/edit-event/[[eventItem.id]]">
           <paper-icon-button icon="create" title="Editar" class="button-edit">Editar</paper-icon-button> 
@@ -167,12 +172,14 @@
     
       toggle() {
         this.state = !this.state;
-       
       /*  var moreInfo = document.getElementById('more-info');
         var iconButton = Polymer.dom(event).localTarget;
         iconButton.icon = moreInfo.opened ? 'expand-more': 'expand-less'; */
-        
-    
+       
+      }
+
+      _getIcon (state) {
+        return state ? 'expand-less'  : 'expand-more'; 
       }
       
 
