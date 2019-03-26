@@ -1,6 +1,7 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
 <link rel="import" href="../../bower_components/iron-collapse/iron-collapse.html">
 <link rel="import" href="../../bower_components/paper-card/paper-card.html">
+<link rel="import" href="../../bower_components/iron-icon/iron-icon.html">
 <link rel="import" href="../../bower_components/iron-icons/iron-icons.html">
 
 
@@ -10,19 +11,12 @@
       :host {
         display: block;
       }
-      
-      /* h4 {
-        color: #ff6600;
-      }
 
-      paper-card {
-        width: 100%;
-      } */
-
-      paper-icon-button.expand-more{
-        width: 40px;
-        margin-right:10px; 
-        color: var(--paper-brown-400);
+      .content-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-right: 10px;
       }
 
       .separator {
@@ -31,16 +25,28 @@
         display: flex;
         justify-content: flex-end;
       }
-      paper-icon-button.button-edit {
+
+      paper-icon-button.expand-more,
+      paper-icon-button.expand-less {
+        width: 40px;
+        margin-right: 10px; 
+        color: var(--paper-brown-400);
+      }
+
+      .link-edit {
         display: flex;
         align-items: center;
         justify-content: flex-end;
-        width: 100%;
+      }
+
+      paper-icon-button.button-edit,
+      paper-icon-button.button-delete {
+        width: 35px;
         color: var(--paper-brown-400);
       }
 
       .event-card-content  {
-        margin: 15px 24px;
+        margin: 15px 0;
         color: var(--paper-brown-300);
         border-radius: 5px;
         background-color: #fff;
@@ -73,18 +79,13 @@
         font-size: 14px;
       }
 
-      iron-collapse.collapse-description {
+      .event-description {
         padding: 5px 30px 10px;
       }
 
-      /* iron-icon {
-        margin-right: 5px;
-        color: var(--paper-brown-400);
-      } */
-
     </style>
 
-    <paper-card class="event-card-content">
+    <paper-card class="event-card-content" on-click="toggle">
       <div class="card-content">
         <div class="event-name">[[eventItem.name]]</div>
         <div class="event-time-hour-content">
@@ -103,37 +104,25 @@
         </div>
       </div>
       <div class="separator">
-        <paper-icon-button noink="true" icon="{{_getIcon(state)}}" title="Más info" on-click="toggle" class="expand-more"></paper-icon-button>
+        <paper-icon-button 
+          noink="true" 
+          icon="[[iconValue]]" 
+          title="Más info" 
+          class$="[[iconValue]]">
+        </paper-icon-button>
       </div>
      
-      <iron-collapse id="more-info" opened="[[state]]"   class="collapse-description">
+      <iron-collapse id="more-info" opened="[[state]]" class="collapse-description">
         <div class="event-description">[[eventItem.description]]</div>
-        <a href$="/edit-event/[[eventItem.id]]">
-          <paper-icon-button icon="create" title="Editar" class="button-edit">Editar</paper-icon-button> 
-        </a>
+        <div class="content-buttons">
+          <a href$="/edit-event/[[eventItem.id]]" class="link-edit">
+            <paper-icon-button icon="create" title="Editar" class="button-edit">Editar</paper-icon-button> 
+          </a>
+          <paper-icon-button icon="delete" title="Borrar" class="button-delete">Editar</paper-icon-button> 
+        </div>
+
       </iron-collapse> 
     </paper-card>
-
-    <!-- <paper-card heading="Top western road trips" image="./trip.png" alt="Sailboat Harbor" class="white">
-      <div class="card-content">1,000 miles of wonder</div>
-      <div class="card-actions">
-        <paper-button>Share</paper-button>
-        <paper-button>Explore</paper-button>
-        <paper-icon-button icon="expand-more" title="more info" onclick="_toggle()" style="float:right;">
-        </paper-icon-button>
-        <iron-collapse id="more-info" style="width:100%;">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent enim ante, tempus eget volutpat ac, cursus ac ante. Nulla facilisi. Praesent sed lacinia ligula. Donec malesuada nisl eget quam iaculis, vel placerat justo cursus.
-        </iron-collapse>
-        <script>
-          function _toggle() {
-            var moreInfo = document.getElementById('more-info');
-            var iconButton = Polymer.dom(event).localTarget;
-            iconButton.icon = moreInfo.opened ? 'expand-more': 'expand-less';
-            moreInfo.toggle();
-          }
-        </script>
-      </div>
-    </paper-card> -->
   
   </template>
 
@@ -163,36 +152,23 @@
           eventItem: Object,
           state: {
             type: Boolean,
-            value: false
+            value: false 
           },
-          valueIcon: String
-
+          iconValue: {
+            type: String,
+            computed: 'getIconValue(state)'
+          }
         };
       }
     
       toggle() {
         this.state = !this.state;
-      /*  var moreInfo = document.getElementById('more-info');
-        var iconButton = Polymer.dom(event).localTarget;
-        iconButton.icon = moreInfo.opened ? 'expand-more': 'expand-less'; */
-       
       }
 
-      _getIcon (state) {
-        return state ? 'expand-less'  : 'expand-more'; 
-      }
-      
-
-      /* toggleObserver(valueIcon) {
-
-        if (this.state==false) {
-          valueIcon ='expand-more'
-        } else {
-          valueIcon = 'expand-less'
-        }
-      } */
-       
-
+      getIconValue(state) {
+        return state ? this.iconValue = 'expand-less' : this.iconValue = 'expand-more';  
+      } 
+    
     }
 
     window.customElements.define(EventCard.is, EventCard);
