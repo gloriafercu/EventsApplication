@@ -9,6 +9,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/neon-animation/web-animations.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/vaadin-date-picker/vaadin-date-picker.html">
+<link rel="import" href="../../bower_components/vaadin-time-picker/vaadin-time-picker.html">
 <link rel="import" href="../styles/shared-styles.html">
 
 <dom-module id="my-event-form">
@@ -16,22 +26,164 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style include="shared-styles">
       :host {
         display: block;
-
         padding: 10px;
+        --primary-color: #ff6600;
+        --secondary-text-color: var(--paper-brown-300);
+        --paper-input-container-input-color: var(--paper-brown-900);
+        
       }
+      
+      .container-date-hour {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      }
+
+      vaadin-date-picker {
+        width: 55%;
+      }
+
+      vaadin-time-picker {
+        width: 40%;
+      }
+
+      iron-form {
+        box-sizing: border-box;
+        width: 425px;
+        max-width: 425px;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 5px;
+        background-color: #ffffff;
+      }
+
     </style>
 
     <div class="card">
       <div class="circle">2</div>
       <h1>Crear Evento</h1>
-      <p>Modus commodo minimum eum te, vero utinam assueverit per eu.</p>
-      <p>Ea duis bonorum nec, falli paulo aliquid ei eum.Has at minim mucius aliquam, est id tempor laoreet.Pro saepe pertinax ei, ad pri animal labores suscipiantur.</p>
+  
+      <iron-form id="form1">
+        <form action="/foo" method="post">
+          <paper-input type="text" name="nombre" required label="Nombre del evento"></paper-input>
+          <div class="container-date-hour">
+            <vaadin-date-picker class="date" label="Fecha" i18n="[[i18n]]" value="{{date}}" placeholder="DD/MM/YY"></vaadin-date-picker>
+            <vaadin-time-picker class="hour" label="Hora" placeholder="HH:MM"></vaadin-time-picker>
+          </div>
+          <paper-textarea name="descripcion" required label="Descripción" rows="3" placeholder="Introduce una descripción del evento..."></paper-textarea>
+          <paper-input type="text" name="lugar" required label="Lugar"></paper-input>
+          <paper-input type="text" name="organizador" required label="Organizador"></paper-input>
+          <paper-dropdown-menu label="Categoría" name="categoria" required>
+            <paper-listbox class="dropdown-content" slot="dropdown-content">
+              <paper-item value="Ocio">Ocio</paper-item>
+              <paper-item value="Trabajo">Trabajo</paper-item>
+              <paper-item value="Formación">Formación</paper-item>
+              <paper-item value="Evento">Evento</paper-item>
+            </paper-listbox>
+          </paper-dropdown-menu>
+          <div style="margin-top: 25px;">
+            <paper-button raised>Submit</paper-button>
+            <paper-button raised>Reset</paper-button>
+            <paper-button raised>Validate</paper-button>
+          </div>
+        </form>
+      </iron-form>
+  <!-- <script>
+    form1.addEventListener('iron-form-submit', function(event) {
+      this.querySelector('.output').innerHTML = JSON.stringify(event.detail);
+    });
+  </script> -->
+  
     </div>
   </template>
 
   <script>
     class MyEventForm extends Polymer.Element {
-      static get is() { return 'my-event-form'; }
+      static get is() {
+         return 'my-event-form'; 
+      }
+
+      /**
+        * Object describing property-related metadata used by Polymer features
+        */
+      static get properties() {
+        return {
+          date: {
+            type: Date,
+            notify: true
+          },
+          i18n: {
+            type: Object,
+            value: function() {
+              return {
+                // An array with the full names of months starting
+                // with January.
+                monthNames: [
+                  'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo',
+                  'Junio', 'Julio', 'Agosto', 'Septiembre',
+                  'Octubre', 'Noviembre', 'Diciembre'
+                ],
+
+                // An array of weekday names starting with Monday. Used
+                // in screen reader announcements.
+                weekdays: [
+                  'Lunes', 'Martes', 'Miércoles',
+                  'Jueves', 'Viernes', 'Sábado', 'Domingo'
+                ],
+
+                // An array of short weekday names starting with Monday.
+                // Displayed in the calendar.
+                weekdaysShort: [
+                  'Lun', 'Mar', 'Mie', 'Jue', 'Vie', 'Sab', 'Dom'
+                ],
+
+                // An integer indicating the first day of the week
+                // (0 = Sunday, 1 = Monday, etc.).
+                firstDayOfWeek: 0,
+
+                // Used in screen reader announcements along with week
+                // numbers, if they are displayed.
+                week: 'Semana',
+
+                // Translation of the Calendar icon button title.
+                calendar: 'Calendario',
+
+                // Translation of the Clear icon button title.
+                clear: 'Borrar',
+
+                // Translation of the Today shortcut button text.
+                today: 'Hoy',
+
+                // Translation of the Cancel button text.
+                cancel: 'Volver',
+
+                // A function to format given `Object` as
+                // date string. Object is in the format `{ day: ..., month: ..., year: ... }`
+                // Note: The argument month is 0-based. This means that January = 0 and December = 11.
+                formatDate: d => {
+                  const addZero = value => (value < 10 ? "0" + value : value);
+                // returns a string representation of the given
+                // object in Spanish 'DD/MM/YYYY' format
+                  return `${addZero(d.day)}/${addZero(d.month + 1)}/${d.year}`;
+                },
+
+                // A function to parse the given text to an `Object` in the format `{ day: ..., month: ..., year: ... }`.
+                // Must properly parse (at least) text formatted by `formatDate`.
+                // Setting the property to null will disable keyboard input feature.
+                // Note: The argument month is 0-based. This means that January = 0 and December = 11.
+                parseDate: null,
+
+                // A function to format given `monthName` and
+                // `fullYear` integer as calendar title string.
+                formatTitle: (monthName, fullYear) => {
+                  return monthName + ' ' + fullYear;
+                }
+              }
+            }
+          }
+        };
+      }
     }
 
     window.customElements.define(MyEventForm.is, MyEventForm);

@@ -79,8 +79,15 @@
         font-size: 14px;
       }
 
+      .event-owner {
+        padding: 0 25px;
+        color: var(--paper-brown-200);
+        font-size: 14px;
+      }
+
       .event-description {
         padding: 5px 30px 10px;
+        margin-bottom: 12px;
       }
 
     </style>
@@ -104,23 +111,20 @@
         </div>
       </div>
       <div class="separator">
-        <paper-icon-button 
-          noink="true" 
-          icon="[[iconValue]]" 
-          title="Más info" 
-          class$="[[iconValue]]">
-        </paper-icon-button>
+        <paper-icon-button noink="true" icon="[[iconValue]]" title="Más info" class$="[[iconValue]]"></paper-icon-button>
       </div>
-     
       <iron-collapse id="more-info" opened="[[state]]" class="collapse-description">
         <div class="event-description">[[eventItem.description]]</div>
+        <div class="event-owner">
+          <iron-icon icon="face"></iron-icon>
+          <span>[[eventItem.owner]]</span>
+        </div>
         <div class="content-buttons">
           <a href$="/edit-event/[[eventItem.id]]" class="link-edit">
             <paper-icon-button icon="create" title="Editar" class="button-edit">Editar</paper-icon-button> 
           </a>
           <paper-icon-button icon="delete" title="Borrar" class="button-delete">Editar</paper-icon-button> 
         </div>
-
       </iron-collapse> 
     </paper-card>
   
@@ -160,6 +164,13 @@
           }
         };
       }
+
+   /*    var items = this.querySelectorAll("paper-collapse-item");
+    for(var x=0;x<items.length;x++){
+      if(items[x].id !== e.detail.id){
+          items[x].opened = false;
+      }
+  } */
     
       toggle() {
         this.state = !this.state;
@@ -167,7 +178,9 @@
 
       getIconValue(state) {
         return state ? this.iconValue = 'expand-less' : this.iconValue = 'expand-more';  
-      } 
+      }
+
+
     
     }
 

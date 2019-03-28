@@ -50,7 +50,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <div class="events-list">
       <div class="circle">1</div>
       <h1>Mis eventos</h1>
-
+    
       <template is="dom-repeat" items="[[eventsList]]" as="eventItem">
         <event-card event-item="[[eventItem]]"></event-card>
       </template>
@@ -73,6 +73,22 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           loading: Boolean
         };
       }
+
+      /**
+        * Array of strings describing multi-property observer methods and their
+        * dependant properties
+        */
+      static get observers() {
+        return [
+          'toggleCards(state)'
+        ];
+      }
+
+      toggleCards(state) {
+
+      }
+
+
     }
 
     window.customElements.define(MyEvents.is, MyEvents);
