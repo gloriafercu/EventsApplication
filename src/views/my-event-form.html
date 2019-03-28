@@ -26,7 +26,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style include="shared-styles">
       :host {
         display: block;
-        padding: 10px;
         --primary-color: #ff6600;
         --secondary-text-color: var(--paper-brown-300);
         --paper-input-container-input-color: var(--paper-brown-900);
@@ -57,6 +56,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         border-radius: 5px;
         background-color: #ffffff;
       }
+       [part="label"] [focused]{
+  color: red;
+}
+      /* vaadin-date-picker-overlay-content [part="label"] {
+        color: red;
+      } */
+      /* .input-field [part="label"] {
+        
+        color: var(--primary-color);
+  */
 
     </style>
 
@@ -89,12 +98,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </div>
         </form>
       </iron-form>
-  <!-- <script>
-    form1.addEventListener('iron-form-submit', function(event) {
-      this.querySelector('.output').innerHTML = JSON.stringify(event.detail);
-    });
-  </script> -->
-  
     </div>
   </template>
 
