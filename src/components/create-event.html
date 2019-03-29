@@ -21,7 +21,7 @@
         --primary-color: #ff6600;
         --secondary-text-color: var(--paper-brown-300);
         --paper-input-container-input-color: var(--paper-brown-900);
-        
+       
       }
       
       .container-date-hour {
@@ -29,15 +29,15 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
-      }
-
+      } 
+     
       vaadin-date-picker {
         width: 55%;
-      }
+      } 
 
       vaadin-time-picker {
         width: 40%;
-      }
+      } 
 
       iron-form {
         box-sizing: border-box;
@@ -55,6 +55,8 @@
         justify-content: flex-end;
         margin-top: 25px;
       }
+      
+      
     </style>
 
     
@@ -97,7 +99,7 @@
         <div class="container-buttons">
           <paper-button raised>Reset</paper-button>
           <a href="/events">
-            <paper-button raised on-click="createEvent">Crear Evento</paper-button>
+            <paper-button raised on-click="createEvent">Guardar</paper-button>
           </a>  
         </div>
       </form>
