@@ -36,11 +36,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
+    <app-route 
+      route="{{route}}" 
+      pattern="[[rootPath]]:id" 
+      data="{{routeData}}" 
+      tail="{{subroute}}">
+    </app-route>
+
     <paper-spinner 
       active="[[loading]]">
     </paper-spinner>
 
     <iron-ajax
+      id="getAjax"
       url="http://localhost:3000/data"
       last-response="{{eventsList}}"
       loading="{{loading}}"
@@ -54,7 +62,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <template is="dom-repeat" items="[[eventsList]]" as="eventItem">
         <event-card event-item="[[eventItem]]"></event-card>
       </template>
-
     </div>
 
   </template>
@@ -69,6 +76,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         */
       static get properties() {
         return {
+          route: Object,
+          routeData: Object,
+          id: Number,
           eventsList: Array,
           loading: Boolean
         };
@@ -78,16 +88,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         * Array of strings describing multi-property observer methods and their
         * dependant properties
         */
+    
       static get observers() {
-        return [
-          'toggleCards(state)'
+        return [ 
+          'idChanged(routeData.id)'
         ];
       }
 
-      toggleCards(state) {
-
+      idChanged(id) {
+        this.id = id;
+        this.$.getAjax.generateRequest();
       }
-
 
     }
 

@@ -29,6 +29,56 @@
       "category": "Ocio",
       "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent enim ante, tempus eget volutpat ac, cursus ac ante. Nulla facilisi. Praesent sed lacinia ligula. Donec malesuada nisl eget quam iaculis, vel placerat justo cursus.",
       "id": 3
+    },
+    {
+      "name": "Hola bonita",
+      "date": "2019-03-15",
+      "time": "07:00",
+      "description": "Lore ipsum monicaca lo lore micau Lore ipsum monicaca lo lore micau  Lore ipsum monicaca lo lore micau Lore ipsum monicaca lo lore micau",
+      "location": "Valladolid",
+      "owner": "Juanjo",
+      "category": "Ocio",
+      "id": 4
+    },
+    {
+      "name": "hola Gloira",
+      "date": "2019-03-30",
+      "time": "21:00",
+      "description": "dadjladflajlñadkfjaldjfla  kajdkfjalkdjflkajdl\nljfaldkjflajdlfañ\nkljdflad",
+      "location": "Cullera",
+      "owner": "Eva Calas",
+      "category": "Formación",
+      "id": 5
+    },
+    {
+      "name": "Robótica",
+      "date": "2026-09-18",
+      "time": "04:00",
+      "description": "Hacer Robores con Sergio y Javi",
+      "location": "Avenida Guadalajara 97, 1A Madrid",
+      "owner": "Javi Pérez",
+      "category": "Evento",
+      "id": 6
+    },
+    {
+      "name": "vv",
+      "date": "2019-03-22",
+      "time": "20:00",
+      "description": "kk",
+      "location": "ll",
+      "owner": "lñlñ",
+      "category": "Formación",
+      "id": 7
+    },
+    {
+      "name": "jkjk",
+      "date": "2019-03-13",
+      "time": "21:00",
+      "description": "kjklj",
+      "location": "kjkjlk",
+      "owner": "kñlklkñ",
+      "category": "Formación",
+      "id": 8
     }
   ]
 }
