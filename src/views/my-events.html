@@ -43,7 +43,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       tail="{{subroute}}">
     </app-route>
 
-    <paper-spinner 
+<!--     <paper-spinner 
       active="[[loading]]">
     </paper-spinner>
 
@@ -53,7 +53,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       last-response="{{eventsList}}"
       loading="{{loading}}"
       auto>
-    </iron-ajax>
+    </iron-ajax> -->
 
     <div class="events-list">
       <div class="circle">1</div>
@@ -74,6 +74,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       /**
         * Object describing property-related metadata used by Polymer features
         */
+     /*  static get properties() {
+        return {
+          route: Object,
+          routeData: Object,
+          id: Number,
+          eventsList: Array,
+          loading: Boolean
+        };
+      } */
       static get properties() {
         return {
           route: Object,
@@ -89,7 +98,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         * dependant properties
         */
     
-      static get observers() {
+     /*  static get observers() {
         return [ 
           'idChanged(routeData.id)'
         ];
@@ -99,7 +108,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         this.id = id;
         this.$.getAjax.generateRequest();
       }
-
+ */
     }
 
     window.customElements.define(MyEvents.is, MyEvents);

@@ -26,6 +26,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="lazy-import" href="./views/my-event-form.html">
 <link rel="lazy-import" href="./views/my-edit-event.html">
 <link rel="lazy-import" href="./views/my-view404.html">
+<link rel="import" href="./components/create-event.html">
 
 <dom-module id="my-app">
   <template>
@@ -69,6 +70,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
 
     </style>
+
+    <ajax-component events-list="{{eventsList}}"></ajax-component>
 
     <app-location
       route="{{route}}"
