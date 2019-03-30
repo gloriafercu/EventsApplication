@@ -1,0 +1,125 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="edit-form">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+
+      .container-date-hour {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+      } 
+     
+      vaadin-date-picker {
+        width: 55%;
+      } 
+
+      vaadin-time-picker {
+        width: 40%;
+      } 
+
+      iron-form {
+        box-sizing: border-box;
+        width: 425px;
+        max-width: 425px;
+        padding: 15px;
+        margin-top: 20px;
+        border-radius: 5px;
+        background-color: #ffffff;
+      }
+
+      .container-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        margin-top: 25px;
+      }
+
+    </style>
+
+    <!-- <app-route
+      route="{{route}}"
+      pattern="[[rootPath]]:id"
+      data="{{routeData}}"
+      tail="{{subroute}}">
+    </app-route> -->
+
+    <!-- <iron-ajax
+      id="putAjax"
+      method="put"
+      content-type="application/json"
+      body="[[newEvent]]"
+      url="http://localhost:3000/data/[[id]]"
+      handle-as="json"
+      on-response="postResponseInJson"
+      on-error="postError">
+    </iron-ajax> -->
+
+    <iron-form id="form1">
+      <form action="/foo" method="post">
+        <paper-input id="inputName" type="text" name="nombre" required label="Nombre del evento"></paper-input>
+        <div class="container-date-hour">
+          <vaadin-date-picker class="date" id="inputDate" label="Fecha" i18n="[[i18n]]" value="{{date}}" placeholder="DD/MM/YY"></vaadin-date-picker>
+          <vaadin-time-picker class="hour" id="inputHour" label="Hora" placeholder="HH:MM"></vaadin-time-picker>
+        </div>
+        <paper-textarea id="inputDescription" name="descripcion" required label="Descripción" rows="2" placeholder="Introduce una descripción del evento..."></paper-textarea>
+        <paper-input id="inputLocation" type="text" name="lugar" required label="Lugar"></paper-input>
+        <paper-input id="inputOwner" type="text" name="organizador" required label="Organizador"></paper-input>
+        <paper-dropdown-menu  id="inputCategory" label="Categoría" name="categoria" required>
+          <paper-listbox class="dropdown-content" slot="dropdown-content">
+            <paper-item value="Ocio">Ocio</paper-item>
+            <paper-item value="Trabajo">Trabajo</paper-item>
+            <paper-item value="Formación">Formación</paper-item>
+            <paper-item value="Evento">Evento</paper-item>
+          </paper-listbox>
+        </paper-dropdown-menu>
+        <div class="container-buttons">
+          <paper-button raised>Reset</paper-button>
+          <a href="/events">
+            <paper-button raised on-click="createEvent">Guardar</paper-button>
+          </a>  
+        </div>
+      </form>
+    </iron-form>
+
+    
+
+  </template>
+
+  <script>
+    /**
+     * `edit-form` Description
+     *
+     * @summary ShortDescription.
+     * @customElement
+     * @polymer
+     * @extends {Polymer.Element}
+     */
+    class EditForm extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'edit-form';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          
+        };
+      }
+
+      
+
+    }
+
+    window.customElements.define(EditForm.is, EditForm);
+  </script>
+</dom-module>

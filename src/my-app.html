@@ -20,6 +20,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../bower_components/iron-pages/iron-pages.html">
 <link rel="import" href="../bower_components/iron-selector/iron-selector.html">
 <link rel="import" href="../bower_components/paper-icon-button/paper-icon-button.html">
+<link rel="import" href="../bower_components/iron-ajax/iron-ajax.html">
+<link rel="import" href="../bower_components/paper-spinner/paper-spinner.html">
 <link rel="import" href="./styles/my-icons.html">
 
 <link rel="lazy-import" href="./views/my-events.html">
@@ -70,6 +72,18 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
+    <paper-spinner 
+      active="[[loading]]">
+    </paper-spinner>
+
+    <iron-ajax
+      id="getAjax"
+      url="http://localhost:3000/data"
+      last-response="{{eventsList}}"
+      loading="{{loading}}"
+      auto>
+    </iron-ajax>
+
     <app-location
       route="{{route}}"
       url-space-regex="^[[rootPath]]">
@@ -109,11 +123,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           fallback-selection="view404"
           role="main">
           <my-events 
-            name="events">
+            name="events"
+            events-list="[[eventsList]]"
+            new-event="[[newEvent]]">
           </my-events>
           <my-event-form 
-            name="event-form" 
-            route="[[subroute]]"
+            name="event-form"
             on-post-response-in-json="updateEvents">
           </my-event-form>
           <my-edit-event name="edit-event"></my-edit-event>
@@ -183,9 +198,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       updateEvents() {
         console.log('Actualizar listado de eventos');
         this.$.getAjax.generateRequest();
-      }
-
-      
+      }     
     }
 
     window.customElements.define(MyApp.is, MyApp);

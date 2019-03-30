@@ -1,134 +1,14 @@
 {
   "data": [
     {
-      "name": "Reunión de Agile Spain",
-      "date": "2018-12-31",
-      "time": "01:00",
-      "location": "Puerta del Sol, Madrid",
-      "owner": "Gloria Fernández",
-      "category": "Ocio",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent enim ante, tempus eget volutpat ac, cursus ac ante. Nulla facilisi. Praesent sed lacinia ligula. Donec malesuada nisl eget quam iaculis, vel placerat justo cursus.",
-      "id": 1
-    },
-    {
-      "name": "Camino de Santiago",
-      "date": "2019-01-17",
-      "time": "11:30",
-      "location": "Bilbao",
-      "owner": "Javier Pérez",
-      "category": "Trabajo",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent enim ante, tempus eget volutpat ac, cursus ac ante. Nulla facilisi. Praesent sed lacinia ligula. Donec malesuada nisl eget quam iaculis, vel placerat justo cursus.",
-      "id": 2
-    },
-    {
-      "name": "Fin de semana en Valladolid",
-      "date": "2018-12-29",
-      "time": "15:30",
-      "location": "Cordoba",
-      "owner": "Juan García",
-      "category": "Ocio",
-      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent enim ante, tempus eget volutpat ac, cursus ac ante. Nulla facilisi. Praesent sed lacinia ligula. Donec malesuada nisl eget quam iaculis, vel placerat justo cursus.",
-      "id": 3
-    },
-    {
-      "name": "Hola bonita",
-      "date": "2019-03-15",
-      "time": "07:00",
-      "description": "Lore ipsum monicaca lo lore micau Lore ipsum monicaca lo lore micau  Lore ipsum monicaca lo lore micau Lore ipsum monicaca lo lore micau",
-      "location": "Valladolid",
-      "owner": "Juanjo",
-      "category": "Ocio",
-      "id": 4
-    },
-    {
-      "name": "hola Gloira",
+      "name": "Tarde de legos con Sergio",
       "date": "2019-03-30",
-      "time": "21:00",
-      "description": "dadjladflajlñadkfjaldjfla  kajdkfjalkdjflkajdl\nljfaldkjflajdlfañ\nkljdflad",
-      "location": "Cullera",
-      "owner": "Eva Calas",
-      "category": "Formación",
-      "id": 5
-    },
-    {
-      "name": "Robótica",
-      "date": "2026-09-18",
-      "time": "04:00",
-      "description": "Hacer Robores con Sergio y Javi",
-      "location": "Avenida Guadalajara 97, 1A Madrid",
-      "owner": "Javi Pérez",
-      "category": "Evento",
-      "id": 6
-    },
-    {
-      "name": "vv",
-      "date": "2019-03-22",
-      "time": "20:00",
-      "description": "kk",
-      "location": "ll",
-      "owner": "lñlñ",
-      "category": "Formación",
-      "id": 7
-    },
-    {
-      "name": "jkjk",
-      "date": "2019-03-13",
-      "time": "21:00",
-      "description": "kjklj",
-      "location": "kjkjlk",
-      "owner": "kñlklkñ",
-      "category": "Formación",
-      "id": 8
-    },
-    {
-      "name": "334",
-      "date": "2019-03-16",
-      "time": "01:00",
-      "description": "423",
-      "location": "42",
-      "owner": "243",
+      "time": "22:00",
+      "description": "Tarde divertida en casa con Sergio y Javi jugando a los legos y viendo los super wings en Netflix. También hemos estado jugando al juego de pescar pececitos.",
+      "location": "Madrid",
+      "owner": "Sergio Pérez",
       "category": "Ocio",
-      "id": 9
-    },
-    {
-      "name": "puta",
-      "date": "2019-03-15",
-      "time": "00:00",
-      "description": "dfa",
-      "location": "fad",
-      "owner": "fad",
-      "category": "Trabajo",
-      "id": 10
-    },
-    {
-      "name": "coco",
-      "date": "2019-03-08",
-      "time": "02:00",
-      "description": "da",
-      "location": "da",
-      "owner": "888",
-      "category": "Evento",
-      "id": 11
-    },
-    {
-      "name": "coca cola",
-      "date": "2019-03-29",
-      "time": "05:00",
-      "description": "dad",
-      "location": "qwert",
-      "owner": "qwert",
-      "category": "Ocio",
-      "id": 12
-    },
-    {
-      "name": "calipo",
-      "date": "2019-03-23",
-      "time": "03:00",
-      "description": "calip0o",
-      "location": "caliop",
-      "owner": "ca,eñkñe´",
-      "category": "Trabajo",
-      "id": 13
+      "id": 1
     }
   ]
 }
