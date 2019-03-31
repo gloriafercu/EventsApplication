@@ -36,25 +36,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
     </style>
 
-    <!-- <app-route 
-      route="{{route}}" 
-      pattern="[[rootPath]]:id" 
-      data="{{routeData}}" 
-      tail="{{subroute}}">
-    </app-route> -->
-
-    <!-- <paper-spinner 
-      active="[[loading]]">
-    </paper-spinner>
-
-    <iron-ajax
-      id="getAjax"
-      url="http://localhost:3000/data"
-      last-response="{{eventsList}}"
-      loading="{{loading}}"
-      auto>
-    </iron-ajax> -->
-
     <div class="events-list">
       <div class="circle">1</div>
       <h1>Mis eventos</h1>
@@ -86,21 +67,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         };
       }
 
-      /**
-        * Array of strings describing multi-property observer methods and their
-        * dependant properties
-        */
-    
-    //  static get observers() {
-    //     return [ 
-    //       'idChanged(routeData.id)'
-    //     ];
-    //   }
-
-    //   idChanged(id) {
-    //     this.id = id;
-    //     this.$.getAjax.generateRequest();
-    //   }
     }
 
     window.customElements.define(MyEvents.is, MyEvents);

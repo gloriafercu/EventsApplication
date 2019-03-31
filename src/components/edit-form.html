@@ -1,4 +1,15 @@
 <link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/paper-input/paper-input.html">
+<link rel="import" href="../../bower_components/paper-input/paper-textarea.html">
+<link rel="import" href="../../bower_components/iron-form/iron-form.html">
+<link rel="import" href="../../bower_components/neon-animation/web-animations.html">
+<link rel="import" href="../../bower_components/paper-dropdown-menu/paper-dropdown-menu.html">
+<link rel="import" href="../../bower_components/paper-listbox/paper-listbox.html">
+<link rel="import" href="../../bower_components/paper-button/paper-button.html">
+<link rel="import" href="../../bower_components/paper-item/paper-item.html">
+<link rel="import" href="../../bower_components/vaadin-date-picker/vaadin-date-picker.html">
+<link rel="import" href="../../bower_components/vaadin-time-picker/vaadin-time-picker.html">
+<link rel="import" href="../../bower_components/iron-ajax/iron-ajax.html">
 
 <dom-module id="edit-form">
   <template>
@@ -41,35 +52,42 @@
 
     </style>
 
-    <!-- <app-route
+    <app-route
       route="{{route}}"
       pattern="[[rootPath]]:id"
       data="{{routeData}}"
       tail="{{subroute}}">
-    </app-route> -->
+    </app-route>
 
-    <!-- <iron-ajax
+    <iron-ajax
+      id="ajaxId"
+      url="http://localhost:3000/data/[[id]]"
+      handle-as="json" 
+      last-response="{{editableEvent}}">
+    </iron-ajax>
+
+    <iron-ajax
       id="putAjax"
       method="put"
       content-type="application/json"
-      body="[[newEvent]]"
+      body="[[editableEvent]]"
       url="http://localhost:3000/data/[[id]]"
       handle-as="json"
-      on-response="postResponseInJson"
-      on-error="postError">
-    </iron-ajax> -->
+      on-response="putResponseInJson"
+      on-error="putError">
+    </iron-ajax>
 
     <iron-form id="form1">
       <form action="/foo" method="post">
-        <paper-input id="inputName" type="text" name="nombre" required label="Nombre del evento"></paper-input>
+        <paper-input id="inputName" name="nombre" label="Nombre del evento" value="{{editableEvent.name}}"></paper-input>
         <div class="container-date-hour">
-          <vaadin-date-picker class="date" id="inputDate" label="Fecha" i18n="[[i18n]]" value="{{date}}" placeholder="DD/MM/YY"></vaadin-date-picker>
-          <vaadin-time-picker class="hour" id="inputHour" label="Hora" placeholder="HH:MM"></vaadin-time-picker>
+          <vaadin-date-picker class="date" id="inputDate" label="Fecha" i18n="[[i18n]]" value="{{editableEvent.date}}"></vaadin-date-picker>
+          <vaadin-time-picker class="hour" id="inputHour" label="Hora" value="{{editableEvent.hour}}"></vaadin-time-picker>
         </div>
-        <paper-textarea id="inputDescription" name="descripcion" required label="Descripción" rows="2" placeholder="Introduce una descripción del evento..."></paper-textarea>
-        <paper-input id="inputLocation" type="text" name="lugar" required label="Lugar"></paper-input>
-        <paper-input id="inputOwner" type="text" name="organizador" required label="Organizador"></paper-input>
-        <paper-dropdown-menu  id="inputCategory" label="Categoría" name="categoria" required>
+        <paper-textarea id="inputDescription" name="descripcion" label="Descripción" rows="2" value="{{editableEvent.description}}"></paper-textarea>
+        <paper-input id="inputLocation" name="lugar" label="Lugar" value="{{editableEvent.location}}"></paper-input>
+        <paper-input id="inputOwner" name="organizador" label="Organizador" value="{{editableEvent.owner}}"></paper-input>
+        <paper-dropdown-menu  id="inputCategory" label="Categoría" name="categoria" value="{{editableEvent.category}}">
           <paper-listbox class="dropdown-content" slot="dropdown-content">
             <paper-item value="Ocio">Ocio</paper-item>
             <paper-item value="Trabajo">Trabajo</paper-item>
@@ -77,12 +95,9 @@
             <paper-item value="Evento">Evento</paper-item>
           </paper-listbox>
         </paper-dropdown-menu>
-        <div class="container-buttons">
-          <paper-button raised>Reset</paper-button>
-          <a href="/events">
-            <paper-button raised on-click="createEvent">Guardar</paper-button>
-          </a>  
-        </div>
+        <a href="/events">
+          <paper-button raised on-click="editEvent">Guardar cambios</paper-button>
+        </a>  
       </form>
     </iron-form>
 
@@ -112,12 +127,42 @@
        */
       static get properties() {
         return {
-          
+          route: Object,
+          routeData: Object,
+          id: Number,
+          editableEvent: Object 
         };
       }
 
-      
+      static get observers() {
+        return [
+          'idChangedObserver(routeData.id)'
+        ];
+      }
 
+      idChangedObserver(id) {
+        this.id = id;
+        this.$.ajaxId.generateRequest();
+      }
+
+      editEvent() {
+        console.log('Editar');
+        this.$.putAjax.generateRequest()
+      }
+
+      putResponseInJson(e) {
+        console.log('putResponseInJson: ', e);
+        this.dispatchEvent(new CustomEvent('put-response-in-json', {
+          bubbles: true,
+          composed: true,
+          detail: {              
+          }
+        }));
+      }
+
+      putError() {
+        console.log(e.detail);
+      }
     }
 
     window.customElements.define(EditForm.is, EditForm);

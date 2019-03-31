@@ -123,7 +123,7 @@
           <a href$="/edit-event/[[eventItem.id]]" class="link-edit">
             <paper-icon-button icon="create" title="Editar" class="button-edit">Editar</paper-icon-button> 
           </a>
-          <paper-icon-button icon="delete" title="Borrar" class="button-delete">Editar</paper-icon-button> 
+          <paper-icon-button icon="delete" title="Borrar" class="button-delete">Borrar</paper-icon-button> 
         </div>
       </iron-collapse> 
     </paper-card>
@@ -165,7 +165,10 @@
         };
       }
 
-   /*    var items = this.querySelectorAll("paper-collapse-item");
+   /*  DESPLEGAR UNA CARD Y CERRAR EL RESTO: Intentarlo con esto  
+   
+   
+   var items = this.querySelectorAll("paper-collapse-item");
     for(var x=0;x<items.length;x++){
       if(items[x].id !== e.detail.id){
           items[x].opened = false;

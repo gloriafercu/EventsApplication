@@ -9,6 +9,16 @@
       "owner": "Sergio Pérez",
       "category": "Ocio",
       "id": 1
+    },
+    {
+      "name": "Viendo los super wings",
+      "date": "2019-03-30",
+      "time": "04:00",
+      "description": "Que esta pasando don pepito",
+      "location": "Madrid",
+      "owner": "Gloria",
+      "category": "Trabajo",
+      "id": 2
     }
   ]
 }

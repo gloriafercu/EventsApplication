@@ -57,13 +57,6 @@
       }    
     </style>
 
-<!-- <app-route
-route="{{route}}"
-pattern="[[rootPath]]:page"
-data="{{routeData}}"
-tail="{{subroute}}">
-</app-route> -->
-
     <iron-ajax
       id="postAjax"
       method="post"
@@ -77,14 +70,14 @@ tail="{{subroute}}">
 
     <iron-form id="form1">
       <form action="/foo" method="post">
-        <paper-input id="inputName" type="text" name="nombre" required label="Nombre del evento"></paper-input>
+        <paper-input id="inputName" name="nombre" required label="Nombre del evento"></paper-input>
         <div class="container-date-hour">
           <vaadin-date-picker class="date" id="inputDate" label="Fecha" i18n="[[i18n]]" value="{{date}}" placeholder="DD/MM/YYYY"></vaadin-date-picker>
           <vaadin-time-picker class="hour" id="inputHour" label="Hora" placeholder="HH:MM"></vaadin-time-picker>
         </div>
         <paper-textarea id="inputDescription" name="descripcion" required label="Descripción" rows="2" placeholder="Introduce una descripción del evento..."></paper-textarea>
-        <paper-input id="inputLocation" type="text" name="lugar" required label="Lugar"></paper-input>
-        <paper-input id="inputOwner" type="text" name="organizador" required label="Organizador"></paper-input>
+        <paper-input id="inputLocation" name="lugar" required label="Lugar"></paper-input>
+        <paper-input id="inputOwner" name="organizador" required label="Organizador"></paper-input>
         <paper-dropdown-menu  id="inputCategory" label="Categoría" name="categoria" required>
           <paper-listbox class="dropdown-content" slot="dropdown-content">
             <paper-item value="Ocio">Ocio</paper-item>
@@ -221,11 +214,9 @@ tail="{{subroute}}">
         }));
       }
 
-
       postError() {
         console.log(e.detail);
       }
-
     }
 
     window.customElements.define(CreateEvent.is, CreateEvent);

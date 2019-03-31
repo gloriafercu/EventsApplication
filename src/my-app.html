@@ -124,14 +124,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           role="main">
           <my-events 
             name="events"
-            events-list="[[eventsList]]"
-            new-event="[[newEvent]]">
+            events-list="[[eventsList]]">
           </my-events>
           <my-event-form 
             name="event-form"
             on-post-response-in-json="updateEvents">
           </my-event-form>
-          <my-edit-event name="edit-event"></my-edit-event>
+          <my-edit-event 
+            name="edit-event"
+            route="[[subroute]]"
+            on-put-response-in-json="updateEvents">
+          </my-edit-event>
           <my-view404 name="view404"></my-view404>
         </iron-pages>
       </app-header-layout>
